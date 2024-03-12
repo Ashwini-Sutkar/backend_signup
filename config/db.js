@@ -24,4 +24,4 @@ const dbforSequlize = new Sequelize(
     dialect: "mysql",
   }
 );
-(module.exports = dbforSequlize), connection;
+module.exports = dbforSequlize , connection;

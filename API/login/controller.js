@@ -2,14 +2,15 @@
 const dao = require("./dao");
 const model = require("./model");
 
+// exports.add = async (req, res, next) => {: This line exports a function named add that handles adding data to the database. It takes three parameters: req (the request object), res (the response object), and next (a function to call the next middleware in the stack, which is not used in this case).
 exports.add = async (req, res, next) => {
     console.log("data=",req.body);
-  dao
+  dao                 // dao.create(req.body): This line calls a function named create on the dao object (presumably a data access object or database model) and passes the data from the request body (req.body) as an argument. This function likely creates a new record in the database with the provided data.
     .create(req.body)
-    .then((data) => {
+    .then((data) => {   // .then((data) => { return res.status(201).send(data); }): If the record creation is successful, this block is executed. It sends a response with status code 201 (indicating "Created") and sends back the data that was created.
       return res.status(201).send(data);
     })
-    .catch((err) => {
+    .catch((err) => {   // If an error occurs during the creation of the record, this block is executed. It sends a response with status code 500 (indicating "Internal Server Error") and sends back the error message.
       return res.status(500).send(err);
     });
 };
