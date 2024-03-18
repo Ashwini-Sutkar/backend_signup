@@ -2,12 +2,15 @@
 const express = require("express");  //allows you to import the Express framework into your Node.js application, 
 const dotenv = require("dotenv");   // allows you to load environment variables from a .env file into your Node.js application, enabling you to manage configuration settings such as API keys or database credentials securely
 
+
 const signup = require("./API/login/route"); //  allows you to import the routing functionality defined in the specified file (route.js in the login directory within the API directory) into your Node.js application. This enables you to organize your code into modular components and define routes for handling requests related to user signup.
 const bodyParser = require("body-parser"); // allows you to parse incoming request bodies in your Node.js application. This is essential for handling POST requests and extracting data from the request body, such as form data or JSON payloads. The body-parser middleware simplifies this process by providing methods to parse different types of request bodies into a usable format, making it easier to access and process the data in your application.
 
 const cors = require("cors"); //allows you to enable Cross-Origin Resource Sharing (CORS) in your Node.js application. CORS is a security feature implemented by web browsers to restrict cross-origin HTTP requests initiated from scripts running in the browser. By requiring the cors middleware, you can configure your server to allow or restrict access to resources from different origins, which is particularly useful when building APIs that need to be accessed by clients from different domains.
 const app = express(); //initializes an instance of the Express framework, allowing you to create a web server and define routes, middleware, and other functionalities for your Node.js application. This line sets up the foundation for building your application using the features provided by Express.
 /* Load env */
+
+app.use(express.static('dist'))
 dotenv.config({ path: "./.env" }); //  loads environment variables from a .env file located in the root directory of your project. This line is typically used at the entry point of your application to ensure that environment variables defined in the .env file are available throughout your application. It enables you to manage configuration settings, such as API keys or database credentials, in a separate file, keeping sensitive information out of your codebase.
 app.use(bodyParser.json()); // This line tells your Express application to use a middleware called body-parser to understand JSON data sent in HTTP requests. It helps your server to read and process JSON data that clients send when making requests to your server.
 app.use(cors());
